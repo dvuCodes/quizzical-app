@@ -1,0 +1,52 @@
+/* Questions stles */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.794239px solid #dbdef0;
+  gap: 0.4em;
+  padding-bottom: 0.3em;
+  height: auto;
+  width: 360px;
+}
+
+.question--wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  width: 100%;
+  padding-bottom: 1em;
+  gap: 6px;
+}
+
+.answer--btn {
+  background-color: transparent;
+  border: 1px solid #dbdef0;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 25px;
+  min-height: 30px;
+  height: 45px;
+  width: 100%;
+  max-width: 177px;
+  color: #293264;
+  opacity: 0.5;
+  cursor: pointer;
+  overflow-wrap: break-word;
+  white-space: normal;
+  transition: background-color 0.3s ease;
+}
+
+.selected {
+  background-color: #2b9348;
+  color: white;
+  transform: scale(1.05);
+}
+
+.wrapper > h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}

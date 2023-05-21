@@ -1,0 +1,100 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Karla", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+/* typography */
+
+h1,
+p {
+  margin: 0;
+  color: #293264;
+}
+
+h3 {
+  color: #293264;
+}
+
+/* main styles */
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5em;
+  height: 100vh;
+  padding: 1em 0;
+}
+
+button {
+  font-family: inherit;
+  background-color: #4d5b9e;
+  color: #f5f7fb;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100px;
+  height: 50px;
+  border-radius: 6px;
+}
+
+button:active {
+  transform: scale(0.95) perspective(500px) rotateX(5deg);
+}
+
+button.playagain--btn {
+  height: 40px;
+}
+
+/* .start--quiz--btn {
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100px;
+  height: 50px;
+  border-radius: 6px;
+} */
+
+.bg--img--1 {
+  position: fixed;
+  left: -80px;
+  bottom: -80px;
+  z-index: -1;
+}
+
+.bg--img--2 {
+  position: fixed;
+  right: -80px;
+  top: -80px;
+  z-index: -1;
+}
+
+.bottom--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0 2em;
+}
