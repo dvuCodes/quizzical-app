@@ -67,6 +67,7 @@ function App() {
             ...question,
             selectedAnswer: answer,
             isSelected: true,
+            isIncorrect: false,
           }
         }
         return question
@@ -75,23 +76,50 @@ function App() {
   }
 
   // Submit answers
+  // const onSubmitClick = () => {
+  //   const perfectScore = questions.length
+  //   let updatedScore = 0
+
+  //   // loop through questions array and compare the selected answer with the correct answer
+  //   for (let i = 0; i < questions.length; i++) {
+  //     if (questions[i].selectedAnswer === questions[i].correct_answer) {
+  //       updatedScore++
+  //     }
+  //   }
+  //   setScore(updatedScore)
+
+  //   // if score is perfect set isPerfect state to true
+  //   if (score === perfectScore) {
+  //     setIsPerfect(true)
+  //   }
+
+  //   setgameOver(true)
+  // }
+
+  // map over questions add a new prop called isCorrect
+
   const onSubmitClick = () => {
     const perfectScore = questions.length
     let updatedScore = 0
 
-    // loop through questions array and compare the selected answer with the correct answer
-    for (let i = 0; i < questions.length; i++) {
-      if (questions[i].selectedAnswer === questions[i].correct_answer) {
-        updatedScore++
-      }
-    }
+    setQuestions((preState) =>
+      preState.map((question) => {
+        const isCorrect = question.selectedAnswer === question.correct_answer
+        if (!isCorrect) {
+          // Sets a flag for incorrect answers
+          return {
+            ...question,
+            isIncorrect: true,
+          }
+        }
+        return question
+      })
+    )
+
+    // calculate score and checks if it's a perfect score
+    updatedScore = questions.filter((question) => question.isCorrect).length
     setScore(updatedScore)
-
-    // if score is perfect set isPerfect state to true
-    if (score === perfectScore) {
-      setIsPerfect(true)
-    }
-
+    setIsPerfect(updatedScore === perfectScore)
     setgameOver(true)
   }
 

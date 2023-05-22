@@ -7,10 +7,6 @@
 body {
   margin: 0;
   font-family: "Karla", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: #f5f7fb;
   min-height: 100vh;
 }
@@ -34,7 +30,6 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   height: auto;
   gap: 3em;
 }
@@ -42,10 +37,12 @@ main {
 article {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 1em;
+  width: 100%;
   min-height: 100vh;
-  padding: 0.5em 0;
+  padding: 0.5em 0.5em;
 }
 
 button {
@@ -59,7 +56,7 @@ button {
   font-weight: 500;
   width: 120px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 25px;
 }
 
 button:active {
@@ -93,4 +90,66 @@ button.submit--btn {
   width: 100%;
   padding: 0 2em;
   gap: 0.5em;
+}
+
+/* media */
+
+@media (min-width: 800px) {
+  body {
+    width: 100%;
+  }
+
+  article {
+    max-width: 1000px;
+  }
+
+  main {
+    margin: auto;
+  }
+
+  .question--wrapper {
+    display: flex;
+    gap: 0.5em;
+  }
+
+  main h1 {
+    font-size: 3rem;
+  }
+
+  main p {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .start--quiz--btn {
+    font-size: 1.5rem;
+    width: 200px;
+  }
+
+  .wrapper h3 {
+    font-size: 1.4rem;
+  }
+
+  .answer--btn {
+    font-size: 1rem;
+    height: 55px;
+  }
+
+  button {
+    font-size: 1.2rem;
+  }
+
+  button.playagain--btn,
+  button.submit--btn {
+    width: 244px;
+    height: 55px;
+    margin-left: auto;
+  }
+
+  .bottom--wrapper {
+    padding: 0;
+  }
 }

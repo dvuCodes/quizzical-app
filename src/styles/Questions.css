@@ -6,8 +6,9 @@
   border-bottom: 0.794239px solid #dbdef0;
   gap: 0.4em;
   padding-bottom: 0.3em;
-  height: auto;
-  width: 360px;
+  width: 100%;
+  max-width: 1000px;
+  /* border: 1px solid red; */
 }
 
 .question--wrapper {
@@ -31,7 +32,7 @@
   min-height: 30px;
   height: 45px;
   width: 100%;
-  max-width: 177px;
+  max-width: 250px;
   color: #293264;
   opacity: 0.5;
   cursor: pointer;
@@ -40,13 +41,19 @@
   transition: background-color 0.3s ease;
 }
 
+.wrapper > h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* utlity */
+
 .selected {
   background-color: #2b9348;
   color: white;
   transform: scale(1.05);
 }
 
-.wrapper > h3 {
-  margin: 0;
-  font-size: 1.1rem;
+.incorrect {
+  background-color: red;
 }
