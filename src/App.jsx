@@ -10,7 +10,6 @@ import openTdbApi from "./utils/api"
 
 // API :https://opentdb.com/api_config.php
 // TODO:
-// display correct answer in green and incorrect selected answer in red
 
 function App() {
   const [isStart, setIsStart] = useState(false)
