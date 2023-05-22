@@ -112,7 +112,7 @@ button.submit--btn {
 
   .question--wrapper {
     display: flex;
-    gap: 0.5em;
+    gap: 1em;
   }
 
   main h1 {
