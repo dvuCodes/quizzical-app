@@ -5,10 +5,8 @@
   flex-direction: column;
   border-bottom: 0.794239px solid #dbdef0;
   gap: 0.4em;
-  padding-bottom: 0.3em;
   width: 100%;
   max-width: 1000px;
-  /* border: 1px solid red; */
 }
 
 .question--wrapper {
