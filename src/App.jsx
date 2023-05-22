@@ -170,7 +170,7 @@ function App() {
                       }}
                       onClick={onSubmitClick}
                     >
-                      Submit
+                      Check Answers
                     </button>
                   )}
                 </div>
