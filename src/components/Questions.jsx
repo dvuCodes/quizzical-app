@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import "../styles/Questions.css"
 import { nanoid } from "nanoid"
 import { decode } from "html-entities"
@@ -7,11 +7,9 @@ const Questions = ({
   question,
   answers,
   onHandleSelectedAnswer,
-  isInCorrect,
   selectedAnswer,
 }) => {
   const renderInputs = answers.map((answer) => {
-    const inCorrectStyle = isInCorrect && answer === question
     const selectedStyle = selectedAnswer === answer ? "selected" : ""
     return (
       <input

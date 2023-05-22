@@ -21,6 +21,7 @@ function App() {
   const [fetchError, setfetchError] = useState(null)
   const [isPerfect, setIsPerfect] = useState(false)
   const [score, setScore] = useState(0)
+  const [isRendering, setIsRender] = useState(true)
   const [gameOver, setgameOver] = useState(false)
 
   const fetchData = async () => {
@@ -50,6 +51,7 @@ function App() {
       console.log("Error fetching data:", err)
       setfetchError("Unable to generate questions. Please try again.")
     }
+    setIsRender(false)
   }
 
   // Start game click
@@ -57,6 +59,10 @@ function App() {
     fetchData()
     setIsStart(true)
   }
+
+  useEffect(() => {
+    console.log(questions)
+  }, [questions])
 
   // Set the new state and the selected answer
   const onHandleSelectedAnswer = (questionId, answer) => {
@@ -67,7 +73,6 @@ function App() {
             ...question,
             selectedAnswer: answer,
             isSelected: true,
-            isIncorrect: false,
           }
         }
         return question
@@ -75,49 +80,18 @@ function App() {
     )
   }
 
-  // Submit answers
-  // const onSubmitClick = () => {
-  //   const perfectScore = questions.length
-  //   let updatedScore = 0
-
-  //   // loop through questions array and compare the selected answer with the correct answer
-  //   for (let i = 0; i < questions.length; i++) {
-  //     if (questions[i].selectedAnswer === questions[i].correct_answer) {
-  //       updatedScore++
-  //     }
-  //   }
-  //   setScore(updatedScore)
-
-  //   // if score is perfect set isPerfect state to true
-  //   if (score === perfectScore) {
-  //     setIsPerfect(true)
-  //   }
-
-  //   setgameOver(true)
-  // }
-
   // map over questions add a new prop called isCorrect
-
   const onSubmitClick = () => {
     const perfectScore = questions.length
     let updatedScore = 0
 
-    setQuestions((preState) =>
-      preState.map((question) => {
-        const isCorrect = question.selectedAnswer === question.correct_answer
-        if (!isCorrect) {
-          // Sets a flag for incorrect answers
-          return {
-            ...question,
-            isIncorrect: true,
-          }
-        }
-        return question
-      })
-    )
+    for (let i = 0; i < questions.length; i++) {
+      if (questions[i].selectedAnswer === questions[i].correct_answer) {
+        updatedScore++
+      }
+    }
 
     // calculate score and checks if it's a perfect score
-    updatedScore = questions.filter((question) => question.isCorrect).length
     setScore(updatedScore)
     setIsPerfect(updatedScore === perfectScore)
     setgameOver(true)
@@ -134,6 +108,7 @@ function App() {
     return (
       <Questions
         {...question}
+        isIncorrect={question.isIncorrect}
         key={question.id}
         onHandleSelectedAnswer={(answer) =>
           onHandleSelectedAnswer(question.id, answer)
@@ -174,7 +149,7 @@ function App() {
                   )}
                   {!isPerfect && gameOver && (
                     <h3>
-                      Almost perfect! 🤦‍♂️ {score}/{questions.length}{" "}
+                      Try again! 🤦‍♂️ {score}/{questions.length}{" "}
                     </h3>
                   )}
                   {gameOver ? (
@@ -185,7 +160,11 @@ function App() {
                       Play Again
                     </button>
                   ) : (
-                    <button className="submit--btn" onClick={onSubmitClick}>
+                    <button
+                      className="submit--btn"
+                      disabled={isRendering}
+                      onClick={onSubmitClick}
+                    >
                       Submit
                     </button>
                   )}
