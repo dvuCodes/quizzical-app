@@ -17,7 +17,7 @@ function App() {
   const [fetchError, setfetchError] = useState(null)
   const [isPerfect, setIsPerfect] = useState(false)
   const [score, setScore] = useState(0)
-  const [isRendering, setIsRender] = useState(true)
+  const [isRendering, setIsRendering] = useState(true)
   const [gameOver, setgameOver] = useState(false)
 
   const fetchData = async () => {
@@ -47,7 +47,7 @@ function App() {
       console.log("Error fetching data:", err)
       setfetchError("Unable to generate questions. Please try again.")
     }
-    setIsRender(false)
+    setIsRendering(false)
   }
 
   // Start game click
