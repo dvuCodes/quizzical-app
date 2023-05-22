@@ -11,9 +11,6 @@ import openTdbApi from "./utils/api"
 // API :https://opentdb.com/api_config.php
 // TODO:
 // display correct answer in green and incorrect selected answer in red
-// -add media queries for larger screen sizes
-// add more comments to code
-// refractor code
 
 function App() {
   const [isStart, setIsStart] = useState(false)
@@ -60,6 +57,7 @@ function App() {
     setIsStart(true)
   }
 
+  // for testing
   useEffect(() => {
     console.log(questions)
   }, [questions])
@@ -85,16 +83,20 @@ function App() {
     const perfectScore = questions.length
     let updatedScore = 0
 
+    // loops through array to update score
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].selectedAnswer === questions[i].correct_answer) {
         updatedScore++
       }
     }
 
+    setTimeout(() => {
+      setScore(updatedScore)
+      setIsPerfect(updatedScore === perfectScore)
+      setgameOver(true)
+    }, 1000)
+
     // calculate score and checks if it's a perfect score
-    setScore(updatedScore)
-    setIsPerfect(updatedScore === perfectScore)
-    setgameOver(true)
   }
 
   const onPlayAgainClick = () => {
@@ -108,7 +110,7 @@ function App() {
     return (
       <Questions
         {...question}
-        isIncorrect={question.isIncorrect}
+        gameOver={gameOver}
         key={question.id}
         onHandleSelectedAnswer={(answer) =>
           onHandleSelectedAnswer(question.id, answer)
@@ -144,12 +146,13 @@ function App() {
                 <div className="bottom--wrapper">
                   {isPerfect && gameOver && (
                     <h3>
-                      You got a perfect score!! {score}/{questions.length}
+                      You got a perfect score!! Your score: {score}/
+                      {questions.length}
                     </h3>
                   )}
                   {!isPerfect && gameOver && (
                     <h3>
-                      Try again! 🤦‍♂️ {score}/{questions.length}{" "}
+                      Try again! 🤦‍♂️ Your score: {score}/{questions.length}{" "}
                     </h3>
                   )}
                   {gameOver ? (
@@ -163,6 +166,9 @@ function App() {
                     <button
                       className="submit--btn"
                       disabled={isRendering}
+                      style={{
+                        backgroundColor: isRendering ? "grey" : "#4d5b9e",
+                      }}
                       onClick={onSubmitClick}
                     >
                       Submit

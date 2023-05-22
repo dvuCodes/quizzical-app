@@ -58,7 +58,7 @@ button {
   font-size: 1rem;
   font-weight: 500;
   width: 120px;
-  height: 50px;
+  height: 48px;
   border-radius: 25px;
 }
 
@@ -69,7 +69,7 @@ button:active {
 button.playagain--btn,
 button.submit--btn {
   width: 100px;
-  height: 40px;
+  height: 42px;
 }
 
 .bg--img--1 {
@@ -125,6 +125,14 @@ button.submit--btn {
 
   h1 {
     font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  article h3 {
+    margin-left: auto;
   }
 
   .start--quiz--btn {

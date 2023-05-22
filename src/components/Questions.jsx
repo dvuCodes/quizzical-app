@@ -6,14 +6,23 @@ import { decode } from "html-entities"
 const Questions = ({
   question,
   answers,
+  correct_answer,
   onHandleSelectedAnswer,
   selectedAnswer,
+  gameOver,
 }) => {
   const renderInputs = answers.map((answer) => {
+    const isIncorrect =
+      gameOver && selectedAnswer === answer && answer !== correct_answer
+    const isCorrect = gameOver && answer === correct_answer
+
+    // conditional styles
+    const incorrectStyle = isIncorrect ? "incorrect" : ""
+    const correctStyle = isCorrect ? "correct" : ""
     const selectedStyle = selectedAnswer === answer ? "selected" : ""
     return (
       <input
-        className={`answer--btn ${selectedStyle}`}
+        className={`answer--btn ${selectedStyle} ${incorrectStyle} ${correctStyle}`}
         type="button"
         value={decode(answer)}
         key={nanoid()}
