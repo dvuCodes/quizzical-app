@@ -9,10 +9,10 @@ const Questions = ({
   selectedAnswer,
 }) => {
   const renderInputs = answers.map((answer) => {
-    const buttonClassName = selectedAnswer === answer ? "selected" : ""
+    const selectedStyle = selectedAnswer === answer ? "selected" : ""
     return (
       <input
-        className={`answer--btn ${buttonClassName}`}
+        className={`answer--btn ${selectedStyle}`}
         type="button"
         value={answer}
         key={nanoid()}

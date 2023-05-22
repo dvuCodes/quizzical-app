@@ -6,6 +6,7 @@ import { nanoid } from "nanoid"
 import { decode } from "html-entities"
 import Confetti from "react-confetti"
 import shuffle from "./utils/shuffle"
+import openTdbApi from "./utils/api"
 
 // API :https://opentdb.com/api_config.php
 // TODO:
@@ -18,46 +19,13 @@ function App() {
   const [isStart, setIsStart] = useState(false)
   const [questions, setQuestions] = useState([])
   const [fetchError, setfetchError] = useState(null)
-  const [isPerfect, setisPerfect] = useState(false)
+  const [isPerfect, setIsPerfect] = useState(false)
   const [score, setScore] = useState(0)
   const [gameOver, setgameOver] = useState(false)
 
-  // // API fetch
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch("https://opentdb.com/api.php?amount=5")
-  //       if (!res.ok) {
-  //         throw new Error("Failed to fetch data")
-  //       }
-  //       const fetchData = await res.json()
-  //       const data = fetchData.results
-
-  //       setQuestions((oldQuestions) =>
-  //         data.map((question) => {
-  //           return {
-  //             question: decode(question.question),
-  //             answers: shuffle([
-  //               ...question.incorrect_answers,
-  //               question.correct_answer,
-  //             ]),
-  //             correct_answer: question.correct_answer,
-  //             selectedAnswer: "",
-  //             id: nanoid(),
-  //           }
-  //         })
-  //       )
-  //     } catch (err) {
-  //       console.log("Error fetching data:", err)
-  //       setfetchError("Unable to generate questions please try again")
-  //     }
-  //   }
-  //   fetchData()
-  // }, [])
-
   const fetchData = async () => {
     try {
-      const res = await fetch("https://opentdb.com/api.php?amount=5")
+      const res = await fetch(openTdbApi)
       if (!res.ok) {
         throw new Error("Failed to fetch data")
       }
@@ -80,7 +48,7 @@ function App() {
       )
     } catch (err) {
       console.log("Error fetching data:", err)
-      setfetchError("Unable to generate questions please try again")
+      setfetchError("Unable to generate questions. Please try again.")
     }
   }
 
@@ -88,10 +56,9 @@ function App() {
   const onStartQuizClick = () => {
     fetchData()
     setIsStart(true)
-    console.log(questions)
   }
 
-  // sets seleted answer
+  // Set the new state and the selected answer
   const onHandleSelectedAnswer = (questionId, answer) => {
     setQuestions((preState) =>
       preState.map((question) => {
@@ -107,11 +74,12 @@ function App() {
     )
   }
 
-  // submit answers
+  // Submit answers
   const onSubmitClick = () => {
     const perfectScore = questions.length
     let updatedScore = 0
 
+    // loop through questions array and compare the selected answer with the correct answer
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].selectedAnswer === questions[i].correct_answer) {
         updatedScore++
@@ -119,8 +87,9 @@ function App() {
     }
     setScore(updatedScore)
 
+    // if score is perfect set isPerfect state to true
     if (score === perfectScore) {
-      setisPerfect(true)
+      setIsPerfect(true)
     }
 
     setgameOver(true)
@@ -128,11 +97,11 @@ function App() {
 
   const onPlayAgainClick = () => {
     fetchData()
-    setisPerfect(false)
+    setIsPerfect(false)
     setgameOver(false)
   }
 
-  // render question components
+  // Render question components
   const renderQuestions = questions.map((question) => {
     return (
       <Questions
@@ -154,7 +123,6 @@ function App() {
       </>
       {!isStart ? (
         <>
-          {" "}
           <h1 className="app--name">Quizzical</h1>
           <p>A trivial game to test your knowledge!</p>
           <button className="start--quiz--btn" onClick={onStartQuizClick}>
@@ -204,6 +172,3 @@ function App() {
 }
 
 export default App
-
-// change text from stadnard "Your Score"
-// if score !isPerfect && gameOver
