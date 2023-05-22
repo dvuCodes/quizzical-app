@@ -7,21 +7,7 @@ import { decode } from "html-entities"
 import Confetti from "react-confetti"
 import shuffle from "./utils/shuffle"
 
-// REQUIREMENTS
-// Two screens (start & questions)
-// pull 5 questions from the OTDB API
-// Tally correct answers after "Check answers" is clicked
-// style and polish
 // API :https://opentdb.com/api_config.php
-// HINTS:
-// API returns text in encoded in HTML entity - use a librar to decode HTML entities - https://www.npmjs.com/package/he#hedecodehtml-options or https://www.npmjs.com/package/html-entities#user-content-decodetext-options
-// Shuffle items into an array to change position of answers
-// Limit choice to 1 and style selected answer
-// clean up imported font
-
-// TODO
-// toggle selected answer red when chosen
-// find a way to update isCorrect when selecting the answer.
 
 function App() {
   const [isStart, setIsStart] = useState(false)
@@ -87,25 +73,22 @@ function App() {
 
   // submit answers
   const onSubmitClick = () => {
-    let updatedScore = 0
     const perfectScore = questions.length
+    if (score === perfectScore) {
+      setisPerfect(true)
+    }
+  }
+
+  useEffect(() => {
+    let updatedScore = 0
 
     for (let i = 0; i < questions.length; i++) {
       if (questions[i].selectedAnswer === questions[i].correct_answer) {
         updatedScore++
       }
     }
-
-    if (updatedScore === perfectScore) {
-      setisPerfect(true)
-    }
-
     setScore(updatedScore)
     setCheckScore(true)
-  }
-
-  useEffect(() => {
-    console.log("score", score)
   }, [questions])
 
   // render question components
