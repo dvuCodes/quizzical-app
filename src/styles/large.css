@@ -1,0 +1,72 @@
+@media (min-width: 50em) {
+  body {
+    width: 100%;
+  }
+
+  article {
+    max-width: 1000px;
+  }
+
+  main {
+    margin: auto;
+  }
+
+  .question--wrapper {
+    display: flex;
+    gap: 1em;
+  }
+
+  main h1 {
+    font-size: 3rem;
+  }
+
+  main p {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  article h3 {
+    margin-left: auto;
+  }
+
+  .start--quiz--btn {
+    font-size: 1.5rem;
+    width: 200px;
+  }
+
+  .wrapper h3 {
+    font-size: 1.4rem;
+  }
+
+  .answer--btn {
+    font-size: 1rem;
+    height: 55px;
+  }
+
+  button {
+    font-size: 1.2rem;
+  }
+
+  button.playagain--btn,
+  button.submit--btn {
+    width: 244px;
+    height: 55px;
+    margin-left: auto;
+  }
+
+  .bottom--wrapper {
+    padding: 0;
+  }
+
+  img {
+    width: 500px;
+    height: 400px;
+  }
+}

@@ -1,4 +1,3 @@
-const openTdbApi =
-  "https://opentdb.com/api.php?amount=5&category=11&difficulty=easy"
+const openTdbApi = "https://opentdb.com/api.php?amount=10"
 
 export default openTdbApi

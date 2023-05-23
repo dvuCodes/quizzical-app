@@ -10,6 +10,8 @@ import openTdbApi from "./utils/api"
 
 // API :https://opentdb.com/api_config.php
 // TODO:
+// link to firebase and create a highscore db
+// allow user to choose trivia question settings
 
 function App() {
   const [isStart, setIsStart] = useState(false)
