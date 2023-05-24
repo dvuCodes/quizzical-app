@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react"
 import blob1 from "./assets/blob 1.png"
 import blob2 from "./assets/blob 2.png"
 import Questions from "./components/Questions"
-import { nanoid } from "nanoid"
-import { decode } from "html-entities"
+import { Modal } from "./components/Modal"
 import Confetti from "react-confetti"
 import shuffle from "./utils/shuffle"
 import openTdbApi from "./utils/api"
+import { nanoid } from "nanoid"
+import { decode } from "html-entities"
 
 // API :https://opentdb.com/api_config.php
-// TODO:
-// link to firebase and create a highscore db
-// allow user to choose trivia question settings
 
 function App() {
   const [isStart, setIsStart] = useState(false)
@@ -19,9 +17,11 @@ function App() {
   const [fetchError, setfetchError] = useState(null)
   const [isPerfect, setIsPerfect] = useState(false)
   const [score, setScore] = useState(0)
-  const [isRendering, setIsRendering] = useState(true)
+  const [isRendering, setIsRendering] = useState(true) //Using this state to disable buttons when questions are rendering
   const [gameOver, setgameOver] = useState(false)
+  const [isModal, setIsModal] = useState(false)
 
+  // function to fetch trivia questions
   const fetchData = async () => {
     try {
       const res = await fetch(openTdbApi)
@@ -29,41 +29,48 @@ function App() {
         throw new Error("Failed to fetch data")
       }
       const fetchData = await res.json()
-      const data = fetchData.results
-
-      setQuestions((oldQuestions) =>
-        data.map((question) => {
-          return {
-            question: decode(question.question),
-            answers: shuffle([
-              ...question.incorrect_answers,
-              question.correct_answer,
-            ]),
-            correct_answer: question.correct_answer,
-            selectedAnswer: "",
-            id: nanoid(),
-          }
-        })
-      )
+      if (!gameOver) {
+        const data = fetchData.results
+        setQuestions((oldQuestions) =>
+          data.map((question) => {
+            return {
+              question: decode(question.question),
+              answers: shuffle([
+                ...question.incorrect_answers,
+                question.correct_answer,
+              ]),
+              correct_answer: question.correct_answer,
+              selectedAnswer: "",
+              id: nanoid(),
+            }
+          })
+        )
+      }
     } catch (err) {
       console.log("Error fetching data:", err)
       setfetchError("Unable to generate questions. Please try again.")
     }
-    setIsRendering(false)
   }
 
   // Start game click
   const onStartQuizClick = () => {
-    fetchData()
+    console.log(questions)
     setIsStart(true)
   }
 
-  // for testing
+  // Hook to fetch API data when gameOver state is set to "false"
   useEffect(() => {
-    console.log(questions)
-  }, [questions])
+    let subscribe = true
+    if (!gameOver && subscribe) {
+      fetchData()
+    }
+    setIsRendering(false)
+    return () => {
+      subscribe = false
+    }
+  }, [gameOver])
 
-  // Set the new state and the selected answer
+  // Finds the selected answer and sets new state with the selected answer
   const onHandleSelectedAnswer = (questionId, answer) => {
     setQuestions((preState) =>
       preState.map((question) => {
@@ -80,7 +87,7 @@ function App() {
   }
 
   // map over questions add a new prop called isCorrect
-  const onSubmitClick = () => {
+  const onCheckAnswerClick = () => {
     const perfectScore = questions.length
     let updatedScore = 0
 
@@ -93,17 +100,22 @@ function App() {
 
     setTimeout(() => {
       setScore(updatedScore)
+      setIsModal(true)
       setIsPerfect(updatedScore === perfectScore)
       setgameOver(true)
-    }, 1000)
+    }, 500)
 
     // calculate score and checks if it's a perfect score
   }
 
   const onPlayAgainClick = () => {
-    fetchData()
     setIsPerfect(false)
     setgameOver(false)
+  }
+
+  // onClick function to close modal
+  const onCloseModalClick = () => {
+    setIsModal(false)
   }
 
   // Render question components
@@ -132,7 +144,7 @@ function App() {
           <h1 className="app--name">Quizzical</h1>
           <p>A trivial game to test your knowledge!</p>
           <button className="start--quiz--btn" onClick={onStartQuizClick}>
-            Start quiz
+            Start Quiz
           </button>
         </>
       ) : (
@@ -144,35 +156,28 @@ function App() {
               <>
                 <h1>Quizzical</h1>
                 {renderQuestions}
-                <div className="bottom--wrapper">
-                  {isPerfect && gameOver && (
-                    <h3>
-                      You got a perfect score!! Your score: {score}/
-                      {questions.length}
-                    </h3>
-                  )}
-                  {!isPerfect && gameOver && (
-                    <h3>
-                      Try again! 🤦‍♂️ Your score: {score}/{questions.length}{" "}
-                    </h3>
-                  )}
-                  {gameOver ? (
-                    <button
-                      className="playagain--btn"
-                      onClick={onPlayAgainClick}
-                    >
-                      Play Again
-                    </button>
+                <div
+                  className="bottom--wrapper"
+                  // style={{ position: gameOver ? "fixed" : "" }}
+                >
+                  {gameOver && isModal ? (
+                    <Modal
+                      score={score}
+                      onPlayAgainClick={onPlayAgainClick}
+                      onCloseModalClick={onCloseModalClick}
+                      questionLength={questions.length}
+                      isModal={isModal}
+                    />
                   ) : (
                     <button
                       className="submit--btn"
                       disabled={isRendering}
                       style={{
-                        backgroundColor: isRendering ? "grey" : "#4d5b9e",
+                        display: isRendering ? "none" : "block",
                       }}
-                      onClick={onSubmitClick}
+                      onClick={onCheckAnswerClick}
                     >
-                      Check Answers
+                      Check {gameOver ? "Score" : "Answers"}
                     </button>
                   )}
                 </div>

@@ -21,7 +21,7 @@
   }
 
   main p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   h1 {
@@ -51,12 +51,12 @@
   }
 
   button {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   button.playagain--btn,
   button.submit--btn {
-    width: 244px;
+    width: 200px;
     height: 55px;
     margin-left: auto;
   }
@@ -68,5 +68,13 @@
   img {
     width: 500px;
     height: 400px;
+  }
+
+  section.modal--container {
+    height: 20em;
+  }
+
+  .score--tally {
+    font-size: 1.6rem;
   }
 }

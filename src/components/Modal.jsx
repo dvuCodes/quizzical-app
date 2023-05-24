@@ -1,12 +1,34 @@
 import React from "react"
+import "../styles/Modal.css"
 
-export const Modal = () => {
+export const Modal = ({
+  score,
+  onPlayAgainClick,
+  questionLength,
+  onCloseModalClick,
+  isModal,
+}) => {
   return (
-    <Modal>
-      <div className="close--btn">
-        <h3>X</h3>
+    <section
+      className={`modal--container ${isModal ? "open" : "close"}`}
+      style={{ display: isModal ? "" : "none" }}
+    >
+      <h3 className="close--btn" onClick={onCloseModalClick}>
+        X
+      </h3>
+      <div className="score--display">
+        <h3 className="score--tally">
+          Your score: {score}/{questionLength}
+        </h3>
+        {score === questionLength && <p>Wow you're a trivia master! ƪ(˘⌣˘)ʃ</p>}
+        {score >= questionLength / 2 && (
+          <p>Aww so close! Better luck next time🤷‍♂️</p>
+        )}
+        {score < questionLength / 2 && <p>Better luck next time.. o(TヘTo)</p>}
       </div>
-      <div className="score--display"></div>
-    </Modal>
+      <button className="playagain--btn" onClick={onPlayAgainClick}>
+        Play Again
+      </button>
+    </section>
   )
 }

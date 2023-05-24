@@ -15,14 +15,14 @@ const Questions = ({
     const isIncorrect =
       gameOver && selectedAnswer === answer && answer !== correct_answer
     const isCorrect = gameOver && answer === correct_answer
-
     // conditional styles
     const incorrectStyle = isIncorrect ? "incorrect" : ""
     const correctStyle = isCorrect ? "correct" : ""
     const selectedStyle = selectedAnswer === answer ? "selected" : ""
+    const pointerStyle = gameOver ? "pointer--disable" : ""
     return (
       <input
-        className={`answer--btn ${selectedStyle} ${incorrectStyle} ${correctStyle}`}
+        className={`answer--btn ${selectedStyle} ${incorrectStyle} ${correctStyle} ${pointerStyle}`}
         type="button"
         value={decode(answer)}
         key={nanoid()}

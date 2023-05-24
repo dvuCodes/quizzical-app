@@ -12,10 +12,9 @@
 .question--wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  place-items: center;
   width: 100%;
-  padding-top: 0.8em;
-  padding-bottom: 0.8em;
+  padding-top: 0.6em;
+  padding-bottom: 0.6em;
   gap: 4px;
 }
 
@@ -31,13 +30,22 @@
   min-height: 30px;
   height: 40px;
   width: 100%;
-  max-width: 180px;
+  max-width: 160px;
   color: #293264;
   opacity: 0.5;
   cursor: pointer;
   overflow-wrap: break-word;
   white-space: normal;
   transition: background-color 0.3s ease;
+  padding: 0;
+}
+
+.answer--btn:active {
+  transform: scale(0.95) perspective(500px) rotateX(5deg);
+}
+
+.answer--btn:hover {
+  box-shadow: 0 2px 4px #b0b2b9;
 }
 
 .wrapper > h3 {
@@ -59,4 +67,8 @@
 
 .correct {
   background-color: #2b9348;
+}
+
+.pointer--disable {
+  pointer-events: none;
 }
