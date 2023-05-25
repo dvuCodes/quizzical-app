@@ -84,7 +84,7 @@ button.submit--btn {
   left: -80px;
   bottom: -80px;
   z-index: 0;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .bg--img--2 {
@@ -92,7 +92,7 @@ button.submit--btn {
   right: -80px;
   top: -80px;
   z-index: 0;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .bottom--wrapper {
