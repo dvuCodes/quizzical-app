@@ -48,6 +48,7 @@
   .answer--btn {
     font-size: 1rem;
     height: 55px;
+    max-width: 200px;
   }
 
   button {
@@ -76,5 +77,12 @@
 
   .score--tally {
     font-size: 1.6rem;
+  }
+
+  .incorrect--output {
+    background-size: 5%;
+  }
+  .correct--output {
+    background-size: 6%;
   }
 }

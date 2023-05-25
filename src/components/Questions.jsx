@@ -31,8 +31,13 @@ const Questions = ({
     )
   })
 
+  const correctOutput =
+    gameOver && selectedAnswer === correct_answer ? "correct--output" : ""
+  const incorrectOutput =
+    gameOver && selectedAnswer !== correct_answer ? "incorrect--output" : ""
+
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${correctOutput} ${incorrectOutput}`}>
       <h3>{question}</h3>
       <div>
         <form className="question--wrapper"> {renderInputs}</form>

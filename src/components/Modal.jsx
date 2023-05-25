@@ -21,7 +21,7 @@ export const Modal = ({
           Your score: {score}/{questionLength}
         </h3>
         {score === questionLength && <p>Wow you're a trivia master! ƪ(˘⌣˘)ʃ</p>}
-        {score >= questionLength / 2 && (
+        {score >= questionLength / 2 && score < questionLength && (
           <p>Aww so close! Better luck next time🤷‍♂️</p>
         )}
         {score < questionLength / 2 && <p>Better luck next time.. o(TヘTo)</p>}

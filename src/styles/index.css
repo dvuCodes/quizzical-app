@@ -46,7 +46,7 @@ article {
   gap: 1em;
   width: 100%;
   min-height: 100vh;
-  padding: 0.5em 1.5em;
+  padding: 1.5em 1.5em;
 }
 
 button {
@@ -81,14 +81,16 @@ button.submit--btn {
   position: fixed;
   left: -80px;
   bottom: -80px;
-  z-index: -1;
+  z-index: -9999;
+  opacity: 0.6;
 }
 
 .bg--img--2 {
   position: fixed;
   right: -80px;
   top: -80px;
-  z-index: -1;
+  z-index: -9999;
+  opacity: 0.6;
 }
 
 .bottom--wrapper {
