@@ -158,7 +158,7 @@ function App() {
             ) : (
               <>
                 <h1>Quizzical</h1>
-                {renderQuestions}
+                {isRendering ? <h4>Loading..</h4> : renderQuestions}
                 <div
                   className="bottom--wrapper"
                   // style={{ position: gameOver ? "fixed" : "" }}
