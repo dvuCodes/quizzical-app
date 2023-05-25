@@ -86,9 +86,4 @@
   .correct--output {
     background-size: 6%;
   }
-
-  .bg--img--1,
-  .bg--img--2 {
-    display: none;
-  }
 }
