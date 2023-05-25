@@ -75,13 +75,15 @@ button.submit--btn {
 
 .submit--btn {
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .bg--img--1 {
   position: fixed;
   left: -80px;
   bottom: -80px;
-  z-index: -9999;
+  z-index: 0;
   opacity: 0.6;
 }
 
@@ -89,7 +91,7 @@ button.submit--btn {
   position: fixed;
   right: -80px;
   top: -80px;
-  z-index: -9999;
+  z-index: 0;
   opacity: 0.6;
 }
 
