@@ -1,4 +1,4 @@
-@media (min-width: 50em) {
+@media (min-width: 767px) {
   body {
     width: 100%;
   }
@@ -84,5 +84,10 @@
   }
   .correct--output {
     background-size: 6%;
+  }
+
+  .bg--img--1,
+  .bg--img--2 {
+    display: none;
   }
 }
