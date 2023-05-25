@@ -49,6 +49,7 @@
     font-size: 1rem;
     height: 55px;
     max-width: 200px;
+    position: relative;
   }
 
   button {
