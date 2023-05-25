@@ -173,7 +173,7 @@ function App() {
                       className="submit--btn"
                       disabled={isRendering}
                       style={{
-                        display: isRendering ? "none" : "block",
+                        display: isRendering ? "none" : "",
                       }}
                       onClick={onCheckAnswerClick}
                     >

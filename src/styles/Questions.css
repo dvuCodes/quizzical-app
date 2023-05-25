@@ -77,13 +77,13 @@
 .incorrect--output {
   background-image: url("/src/assets/wrong.png");
   background-size: 7%;
-  background-position: right 20px;
+  background-position: right 5%;
   background-repeat: no-repeat;
 }
 
 .correct--output {
   background-image: url("/src/assets/tick.png");
   background-size: 8%;
-  background-position: right 20px;
+  background-position: right 5%;
   background-repeat: no-repeat;
 }
