@@ -81,9 +81,9 @@
   }
 
   .incorrect--output {
-    background-size: 5%;
+    background-size: 3.5%;
   }
   .correct--output {
-    background-size: 6%;
+    background-size: 5%;
   }
 }

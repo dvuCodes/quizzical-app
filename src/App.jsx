@@ -64,7 +64,10 @@ function App() {
     if (!gameOver && subscribe) {
       fetchData()
     }
-    setIsRendering(false)
+    setTimeout(() => {
+      setIsRendering(false)
+    }, 1500)
+
     return () => {
       subscribe = false
     }
