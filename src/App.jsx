@@ -117,7 +117,7 @@ function App() {
 
     setTimeout(() => {
       setIsRendering(false)
-    }, 2000)
+    }, 3000)
 
     setIsPerfect(false)
     setgameOver(false)

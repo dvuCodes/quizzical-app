@@ -1,6 +1,5 @@
 import React from "react"
 import "../styles/Questions.css"
-import { nanoid } from "nanoid"
 import { decode } from "html-entities"
 
 const Questions = ({
@@ -11,7 +10,7 @@ const Questions = ({
   selectedAnswer,
   gameOver,
 }) => {
-  const renderInputs = answers.map((answer) => {
+  const renderInputs = answers.map((answer, index) => {
     const isIncorrect =
       gameOver && selectedAnswer === answer && answer !== correct_answer
     const isCorrect = gameOver && answer === correct_answer
@@ -25,7 +24,7 @@ const Questions = ({
         className={`answer--btn ${selectedStyle} ${incorrectStyle} ${correctStyle} ${pointerStyle}`}
         type="button"
         value={decode(answer)}
-        key={nanoid()}
+        key={index}
         onClick={() => onHandleSelectedAnswer(answer)}
       />
     )
@@ -37,8 +36,15 @@ const Questions = ({
     gameOver && selectedAnswer !== correct_answer ? "incorrect--output" : ""
 
   return (
-    <div className={`wrapper ${correctOutput} ${incorrectOutput}`}>
-      <h3>{question}</h3>
+    <div className={`wrapper`}>
+      <div className="wrapper--header">
+        {" "}
+        <h3 className="question">{question}</h3>
+        <div
+          className={`answer--out--container ${correctOutput} ${incorrectOutput}`}
+        ></div>
+      </div>
+
       <div>
         <form className="question--wrapper"> {renderInputs}</form>
       </div>

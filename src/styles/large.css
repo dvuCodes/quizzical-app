@@ -80,10 +80,10 @@
     font-size: 1.6rem;
   }
 
-  .incorrect--output {
-    background-size: 3.5%;
+  .question {
+    width: 100%;
   }
-  .correct--output {
-    background-size: 5%;
+  .answer--out--container {
+    height: 45px;
   }
 }
