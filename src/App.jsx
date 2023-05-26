@@ -166,7 +166,9 @@ function App() {
               <p>{fetchError}</p>
             ) : (
               <>
-                <h1>Quizzical</h1>
+                <h1>
+                  Q<span className="title--underline">uizzica</span>l
+                </h1>
                 {isRendering ? <h4>Loading..</h4> : renderQuestions}
                 <div
                   className="bottom--wrapper"

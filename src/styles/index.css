@@ -111,3 +111,7 @@ button.submit--btn {
 .score--text {
   margin: auto;
 }
+
+.title--underline {
+  border-bottom: 4px solid #293264;
+}
