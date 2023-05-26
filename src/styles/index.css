@@ -27,6 +27,10 @@ h3 {
   font-size: 1rem;
 }
 
+.app--name {
+  font-size: 2.5rem;
+}
+
 /* main styles */
 
 main {
@@ -83,16 +87,16 @@ button.submit--btn {
   position: fixed;
   left: -80px;
   bottom: -80px;
-  z-index: 0;
-  opacity: 0.4;
+  z-index: -1;
+  opacity: 0.35;
 }
 
 .bg--img--2 {
   position: fixed;
   right: -80px;
   top: -80px;
-  z-index: 0;
-  opacity: 0.4;
+  z-index: -1;
+  opacity: 0.35;
 }
 
 .bottom--wrapper {

@@ -8,6 +8,7 @@ import shuffle from "./utils/shuffle"
 import openTdbApi from "./utils/api"
 import { nanoid } from "nanoid"
 import { decode } from "html-entities"
+import "animate.css"
 
 // API :https://opentdb.com/api_config.php
 
@@ -112,6 +113,12 @@ function App() {
   }
 
   const onPlayAgainClick = () => {
+    setIsRendering(true)
+
+    setTimeout(() => {
+      setIsRendering(false)
+    }, 2000)
+
     setIsPerfect(false)
     setgameOver(false)
   }
@@ -144,7 +151,9 @@ function App() {
       </>
       {!isStart ? (
         <>
-          <h1 className="app--name">Quizzical</h1>
+          <h1 className="app--name animate__animated animate__tada">
+            Quizzical
+          </h1>
           <p>A trivial game to test your knowledge!</p>
           <button className="start--quiz--btn" onClick={onStartQuizClick}>
             Start Quiz
